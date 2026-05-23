@@ -1,10 +1,10 @@
-# Agent-facing messenger tool — Phase 1: send, check, reply only
+# Agent-facing messenger tool — Phase 2: send, check, reply, list_sessions
 from helpers.tool import Tool, Response
 from usr.plugins.a0_comms.helpers.mailbox import Mailbox
 from usr.plugins.a0_comms.helpers.message_schema import Message
 
 class MessengerTool(Tool):
-    """Inter-session messaging tool. Actions: send, check, reply."""
+    """Inter-session messaging tool. Actions: send, check, reply, list_sessions."""
 
     async def execute(self, **kwargs) -> Response:
         action = kwargs.get("action", "")
@@ -15,6 +15,8 @@ class MessengerTool(Tool):
             return await self._check(kwargs)
         elif action == "reply":
             return await self._reply(kwargs)
+        elif action == "list_sessions":
+            return await self._list_sessions()
         else:
             return Response(
                 message=f"Unknown action: {action}. Available: send, check, reply.",
@@ -123,3 +125,17 @@ class MessengerTool(Tool):
             break_loop=False,
             additional={"message_id": message_id, "thread_id": thread_id, "status": "replied"}
         )
+
+    @property
+    def registry(self):
+        if not hasattr(self, '_registry'):
+            from usr.plugins.a0_comms.helpers.registry import Registry
+            self._registry = Registry()
+        return self._registry
+
+    async def _list_sessions(self) -> Response:
+        sessions = self.registry.list_active()
+        if not sessions:
+            return Response(message="No active sessions.", break_loop=False)
+        lines = [f"- {sid}" for sid in sessions]
+        return Response(message=f"Active sessions ({len(sessions)}):\n" + "\n".join(lines), break_loop=False)

@@ -1,11 +1,12 @@
 {
   "project": "a0-comms",
   "version": "0.1.0",
-  "phase": 1,
-  "status": "phase1-mailbox-core-complete",
+  "phase": 2,
+  "status": "phase2-live-delivery-complete",
   "date_created": "2026-05-23T14:50:00Z",
-  "files_created": 9,
-  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. Phase 1 complete.",
+  "date_updated": "2026-05-23T16:10:00Z",
+  "files_created": 12,
+  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. Phase 2 complete: live delivery with SessionRegistry, MessageBus direct injection + async fallback, list_sessions.",
   "directories": [
     "/a0/usr/plugins/a0_comms/helpers",
     "/a0/usr/plugins/a0_comms/tools",
@@ -21,11 +22,14 @@
     "README.md",
     "helpers/message_schema.py",
     "helpers/mailbox.py",
+    "helpers/registry.py",
+    "helpers/bus.py",
     "tools/messenger.py",
     "prompts/agent.system.tool.messenger.md",
-    "tests/test_phase1_mailbox.py"
+    "tests/test_phase1_mailbox.py",
+    "tests/test_phase2_delivery.py"
   ],
   "gaps_known": [],
-  "next_phase": 2,
-  "notes": "Phase 1 complete: send/check/reply actions, JSONL mailbox, Message dataclass, 5 tests passing."
+  "next_phase": 3,
+  "notes": "Phase 1: send/check/reply, JSONL mailbox, 5 tests. Phase 2: SessionRegistry (in-memory, stale detection), MessageBus (direct injection via AgentContext.communicate + mailbox fallback), list_sessions in MessengerTool, 7 tests passing."
 }
