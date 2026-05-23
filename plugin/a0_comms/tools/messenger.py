@@ -19,7 +19,7 @@ class MessengerTool(Tool):
             return await self._list_sessions()
         else:
             return Response(
-                message=f"Unknown action: {action}. Available: send, check, reply.",
+                message=f"Unknown action: {action}. Available: send, check, reply, list_sessions.",
                 break_loop=False
             )
 
