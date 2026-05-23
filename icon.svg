@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#141414;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff0040;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cc0033;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGlow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff0040;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ff0040;stop-opacity:0" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="4" y="4" width="120" height="120" rx="28" ry="28" fill="url(#bgGrad)" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- Left session node (diamond/rhombus) -->
+  <rect x="20" y="40" width="32" height="32" rx="8" ry="8"
+        fill="none" stroke="url(#redGrad)" stroke-width="2.5"
+        transform="rotate(0, 36, 56)"
+        filter="url(#glow)"/>
+  <circle cx="36" cy="56" r="3" fill="#ff0040" opacity="0.8"/>
+
+  <!-- Right session node -->
+  <rect x="76" y="40" width="32" height="32" rx="8" ry="8"
+        fill="none" stroke="url(#redGrad)" stroke-width="2.5"
+        filter="url(#glow)"/>
+  <circle cx="92" cy="56" r="3" fill="#ff0040" opacity="0.8"/>
+
+  <!-- Connection bridge — pulse wave lines -->
+  <!-- Strong center line -->
+  <line x1="54" y1="56" x2="74" y2="56" stroke="#ff0040" stroke-width="2" opacity="0.9" filter="url(#glow)"/>
+
+  <!-- Pulse arcs above -->
+  <path d="M 56 48 Q 64 36 72 48" fill="none" stroke="#ff0040" stroke-width="1.2" opacity="0.5"/>
+  <!-- Pulse arcs below -->
+  <path d="M 56 64 Q 64 76 72 64" fill="none" stroke="#ff0040" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Small signal dot mid-transmission -->
+  <circle cx="64" cy="56" r="2.5" fill="#ff0040" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="2.5;3.5;2.5" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Bottom label: COMMS in red -->
+  <text x="64" y="102" text-anchor="middle"
+        font-family="'Courier New', monospace"
+        font-size="12" font-weight="bold"
+        fill="#ff0040" opacity="0.7"
+        letter-spacing="4">
+    COMMS
+  </text>
+</svg>

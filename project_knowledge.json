@@ -1,14 +1,31 @@
 {
   "project": "a0-comms",
   "version": "0.1.0",
-  "phase": 0,
-  "status": "initialized",
+  "phase": 1,
+  "status": "phase1-mailbox-core-complete",
   "date_created": "2026-05-23T14:50:00Z",
-  "files_created": 0,
-  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. Blueprint and roadmap defined.",
-  "directories": [],
-  "key_files": ["BLUEPRINT.md", "ROADMAP.md", "plugin.yaml", "default_config.yaml", "project_knowledge.json", "README.md"],
+  "files_created": 9,
+  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. Phase 1 complete.",
+  "directories": [
+    "/a0/usr/plugins/a0_comms/helpers",
+    "/a0/usr/plugins/a0_comms/tools",
+    "/a0/usr/plugins/a0_comms/prompts",
+    "/a0/usr/projects/a0-comms/tests"
+  ],
+  "key_files": [
+    "BLUEPRINT.md",
+    "ROADMAP.md",
+    "plugin.yaml",
+    "default_config.yaml",
+    "project_knowledge.json",
+    "README.md",
+    "helpers/message_schema.py",
+    "helpers/mailbox.py",
+    "tools/messenger.py",
+    "prompts/agent.system.tool.messenger.md",
+    "tests/test_phase1_mailbox.py"
+  ],
   "gaps_known": [],
-  "next_phase": 1,
-  "notes": "Blueprint and roadmap written, project scaffolded."
+  "next_phase": 2,
+  "notes": "Phase 1 complete: send/check/reply actions, JSONL mailbox, Message dataclass, 5 tests passing."
 }
