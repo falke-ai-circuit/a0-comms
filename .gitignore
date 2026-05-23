@@ -1,0 +1,7 @@
+.a0proj/
+venv/
+**/__pycache__/
+**/node_modules/
+**/.git/
+*.pyc
+*.egg-info/

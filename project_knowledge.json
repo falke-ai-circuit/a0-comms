@@ -1,0 +1,14 @@
+{
+  "project": "a0-comms",
+  "version": "0.1.0",
+  "phase": 0,
+  "status": "initialized",
+  "date_created": "2026-05-23T14:50:00Z",
+  "files_created": 0,
+  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. Blueprint and roadmap defined.",
+  "directories": [],
+  "key_files": ["BLUEPRINT.md", "ROADMAP.md", "plugin.yaml", "default_config.yaml", "project_knowledge.json", "README.md"],
+  "gaps_known": [],
+  "next_phase": 1,
+  "notes": "Blueprint and roadmap written, project scaffolded."
+}
