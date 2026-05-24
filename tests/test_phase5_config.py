@@ -52,7 +52,7 @@ def test_config_load_defaults():
     assert config.enabled is True
     assert config.allowed_cross_project_messages == ["*"]
     assert isinstance(config.agent_capabilities, list)  # No agent profile -> empty list
-    assert config.get("default_routing_mode") == "auto"
+    assert config.get("default_routing_mode") == "binding"
     assert config.get("default_timeout_seconds") == 120
     print("✓ test_config_load_defaults passed")
 

@@ -1,12 +1,12 @@
 {
   "project": "a0-comms",
   "version": "0.1.0",
-  "phase": 6,
-  "status": "phase6-integration-tests-complete",
+  "phase": 8,
+  "status": "complete",
   "date_created": "2026-05-23T14:50:00Z",
-  "date_updated": "2026-05-23T16:36:42Z",
-  "files_created": 16,
-  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. Phases 1-6 complete: Phase 1: mailbox core (send/check/reply, JSONL storage). Phase 2: live delivery (registry, bus, list_sessions). Phase 4: agent-to-agent comms (forward, broadcast, cross-project permissions, auto-inbox extension). Phase 5: configuration & security (resolution chain, per-project/agent overrides). Phase 6: integration testing with real agents (13 tests: switch_session, multi-step flow, forward annotation, cross-project blocking, broadcast, auto-inbox, parallel sessions, routing state persistence, edge cases).",
+  "date_updated": "2026-05-23T18:50:00Z",
+  "files_created": 21,
+  "description": "Inter-session/inter-agent/inter-project messaging plugin for Agent Zero. All 8 phases complete. Phase 1: mailbox core. Phase 2: live delivery. Phase 4: agent-to-agent comms (forward, broadcast, cross-project permissions, auto-inbox extension). Phase 5: configuration & security. Phase 6: integration testing (13 tests). Phase 7-8: Telegram UX polish (conductor routing prompt, updated messenger prompt with all 7 actions, plugin.yaml Telegram-ready, comprehensive README, USAGE_EXAMPLES (6 scenarios), GOTCHAS (8 gotchas)). Plugin review self-check: 2 WARN (config.html inline toasts pre-existing, LICENSE absent). Git commit f0fc081.",
   "directories": [
     "/a0/usr/plugins/a0_comms/helpers",
     "/a0/usr/plugins/a0_comms/tools",
@@ -20,12 +20,15 @@
     "default_config.yaml",
     "project_knowledge.json",
     "README.md",
+    "USAGE_EXAMPLES.md",
+    "GOTCHAS.md",
     "helpers/message_schema.py",
     "helpers/mailbox.py",
     "helpers/registry.py",
     "helpers/bus.py",
     "tools/messenger.py",
     "prompts/agent.system.tool.messenger.md",
+    "prompts/agent.system.main.messenger_routing.md",
     "tests/test_phase1_mailbox.py",
     "tests/test_phase2_delivery.py",
     "tests/test_phase4_comms.py",
@@ -37,6 +40,6 @@
     "_check marks messages as read — tests needing message_id for _forward must read inbox with mark_read=False first",
     "_check_cross_project_permission checks from_project against allowed list, not to_project — test accordingly"
   ],
-  "next_phase": 6,
-  "notes": "Phase 1: send/check/reply, JSONL mailbox, 5 tests. Phase 2: SessionRegistry, MessageBus, list_sessions, 7 tests. Phase 4: forward, broadcast, cross-project permissions, auto-inbox extension, 8 tests. Phase 5: config resolution, permission integration, 6 tests. Phase 6: 13 tests — switch_session (spawn_session call args + 2 return shapes + resilience), timeout (custom/default), multi-step chain, forward annotation, cross-project blocking, broadcast, auto-inbox (communicate/UserMessage assertion), parallel sessions, routing state persistence (no inline func, JSON round-trip + real send), forward-already-read (not found), reply-nonexistent-thread (not found), broadcast-self-only (no active sessions), forward-cross-project-blocked."
+  "next_phase": "done",
+  "notes": "Phase 1: send/check/reply, JSONL mailbox, 5 tests. Phase 2: SessionRegistry, MessageBus, list_sessions, 7 tests. Phase 4: forward, broadcast, cross-project permissions, auto-inbox extension, 8 tests. Phase 5: config resolution, permission integration, 6 tests. Phase 6: 13 tests — switch_session, timeout, multi-step, forward annotation, cross-project blocking, broadcast, auto-inbox, parallel sessions, routing state persistence, edge cases. Phase 7-8: Documentation & polish — messenger prompt updated (7/7 actions), conductor routing prompt (8 natural language commands), plugin.yaml description, dual READMEs, USAGE_EXAMPLES (6 scenarios), GOTCHAS (8 gotchas). Plugin review self-check: 2 WARNs (config.html inline toasts pre-existing, LICENSE absent for Plugin Index). All tests pass. Git commit f0fc081. PROJECT COMPLETE."
 }

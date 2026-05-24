@@ -1,6 +1,6 @@
 name: a0_comms
 title: Inter-Session Messenger
-description: Async + direct messaging between agent sessions across projects. Mailbox, live delivery, session switching, Telegram integration.
+description: "Async + direct messaging between agent sessions across projects. 8 actions: send, check, check_session, reply, list_sessions, switch_session, broadcast, forward. Telegram-ready with session binding and natural language command routing."
 version: 1.0.0
 settings_sections:
   - agent

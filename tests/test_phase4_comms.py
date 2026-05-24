@@ -381,6 +381,47 @@ def test_auto_inbox_check():
 
 
 # ============================================================
+# Test: check_session reads another session's inbox
+# ============================================================
+def test_check_session():
+    async def run():
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir) / "mailboxes"
+            tmp_path.mkdir(parents=True)
+
+            with patch.object(Mailbox, "BASE_DIR", tmp_path):
+                mailbox = Mailbox()
+                # Store a message in a0-evol's mailbox
+                msg = Message(
+                    from_session="main-conductor",
+                    to_session="a0-evol:default",
+                    from_agent="conductor",
+                    content="EVOL audit phase complete. Proceed to mutation.",
+                    mode="async"
+                )
+                await mailbox.store("a0-evol:default", msg)
+
+                mock_agent = Mock()
+                mock_agent.context_id = "main-conductor"
+                mock_agent.profile_name = "conductor"
+                tool = _create_messenger_tool(tmp_path, mock_agent)
+
+                response = await tool.execute(
+                    action="check_session",
+                    session_id="a0-evol:default"
+                )
+
+                assert "a0-evol:default" in response.message
+                assert "EVOL audit phase complete" in response.message
+                # Assert messages are NOT marked as read (still readable)
+                still_there = await mailbox.check("a0-evol:default", mark_read=False, limit=20)
+                assert len(still_there) == 1
+                print("✓ test_check_session passed")
+
+    asyncio.run(run())
+
+
+# ============================================================
 # Test runner
 # ============================================================
 if __name__ == "__main__":
@@ -395,6 +436,7 @@ if __name__ == "__main__":
         test_cross_project_blocked,
         test_cross_project_wildcard,
         test_auto_inbox_check,
+        test_check_session,
     ]
     passed = 0
     failed = 0

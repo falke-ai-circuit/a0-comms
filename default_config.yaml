@@ -1,15 +1,20 @@
-default_routing_mode: auto
+default_routing_mode: binding  # binding (new default), multi, or none
 default_timeout_seconds: 120
 auto_check_inbox: true
 auto_route_after_response: true
 agent_capabilities:
-  conductor: [send, check, reply, list_sessions, switch_session, broadcast, forward]
+  conductor: [send, check, check_session, reply, list_sessions, switch_session, broadcast, forward]
   default: [send, check, reply, list_sessions]
   evol: [send, check, reply]
   coder: [send, check]
   reviewer: [send, check, reply]
   orchestrator: [send, check, reply, list_sessions]
   shadow: [send, check, reply]
+# Cross-project messaging permissions:
+# List of project names allowed to send cross-project messages.
+# "*" allows all projects. Use specific names like ["a0-circuit", "a0-comms"] to restrict.
+# Cross-project messages from unlisted projects are blocked.
+# Applies to: send, forward, broadcast, reply.
 allowed_cross_project_messages: ["*"]
 stale_session_timeout: 300
 live_delivery_enabled: true

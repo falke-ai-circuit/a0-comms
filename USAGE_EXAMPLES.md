@@ -9,7 +9,7 @@
 5. User: "Now check the logs too"
 6. Conductor auto-routes (current_session still a0-circuit)
 7. a0-circuit:default checks logs, responds
-8. User: "/back"
+8. User: "/sw return"
 9. Conductor returns to main session
 
 ## Example 2: Async Agent-to-Agent
@@ -36,7 +36,7 @@
 
 1. User: "/sw a0-evol Check integrity"  → conductor switches to a0-evol
 2. User waits for response
-3. User: "/tell a0-circuit Also check your logs"  → explicit target without switching
+3. User: "/msg a0-circuit:default Also check your logs"  → explicit target without switching
 4. Both sessions process in parallel
 5. User: "/inbox"  → sees responses from both
 
@@ -47,3 +47,11 @@
 3. After 60 seconds: timeout
 4. Conductor shows: "Session timed out. The session may still be processing. Check inbox later."
 5. Later, conductor checks inbox: sees completion message from heavy-task:default
+
+## Example 7: Checking Another Session's Inbox
+
+1. User: "/msg a0-evol:default"
+2. Conductor calls: messenger.check_session(session_id="a0-evol:default")
+3. Displays unread messages from a0-evol's inbox without switching
+4. User: "/sw a0-evol:default" (now switches if they want to reply)
+5. Conductor binds to a0-evol, subsequent messages auto-route
