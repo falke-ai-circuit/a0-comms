@@ -2,14 +2,14 @@
 
 ## Example 1: Conductor Spawns and Communicates with Project
 
-1. User in Telegram: "/sw a0-circuit run system audit"
+1. User in Telegram: "/session new a0-circuit "Run system audit""
 2. Conductor calls: messenger.switch_session(project="a0-circuit", message="Run system audit")
 3. a0-circuit:default spawns, runs audit, returns results
 4. Conductor shows results in Telegram
 5. User: "Now check the logs too"
-6. Conductor auto-routes (current_session still a0-circuit)
+6. Conductor auto-routes (current_session still a0-circuit:default)
 7. a0-circuit:default checks logs, responds
-8. User: "/sw return"
+8. User: "/session return"
 9. Conductor returns to main session
 
 ## Example 2: Async Agent-to-Agent
@@ -34,11 +34,11 @@
 
 ## Example 5: Parallel Sessions
 
-1. User: "/sw a0-evol Check integrity"  → conductor switches to a0-evol
-2. User waits for response
-3. User: "/msg a0-circuit:default Also check your logs"  → explicit target without switching
+1. User: "/session switch a0-evol:default" → conductor binds to a0-evol
+2. User: "Check integrity" → auto-routes to a0-evol
+3. User: "/session tell a0-circuit:default Also check your logs" → explicit target without switching
 4. Both sessions process in parallel
-5. User: "/inbox"  → sees responses from both
+5. User: "/session multi" → sees consolidated view of all active sessions
 
 ## Example 6: Timeout Handling
 
@@ -48,10 +48,10 @@
 4. Conductor shows: "Session timed out. The session may still be processing. Check inbox later."
 5. Later, conductor checks inbox: sees completion message from heavy-task:default
 
-## Example 7: Checking Another Session's Inbox
+## Example 7: Reading Another Session's Inbox
 
-1. User: "/msg a0-evol:default"
+1. User: "/session read a0-evol:default"
 2. Conductor calls: messenger.check_session(session_id="a0-evol:default")
 3. Displays unread messages from a0-evol's inbox without switching
-4. User: "/sw a0-evol:default" (now switches if they want to reply)
+4. User: "/session switch a0-evol:default" → now switches to reply
 5. Conductor binds to a0-evol, subsequent messages auto-route

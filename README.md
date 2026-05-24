@@ -34,15 +34,17 @@ Agents use the `messenger` tool with actions:
 ```
 
 ### Conductor Commands (Telegram)
+All session commands use the `/session` prefix:
 ```
-/sw a0-circuit          — switch to a0-circuit session
-/back                   — return to main session
-/tell a0-evol Run audit — send message without switching
-/inbox                  — check messages
-/reply 3 yes proceed    — reply to message #3
-/sessions               — list active sessions
-/broadcast Health check — send to all
-/forward 5 a0-circuit   — forward message #5
+/session switch <id>        — bind telegram to session
+/session return              — return to main conductor
+/session list                — list all sessions with status
+/session tell <id> <msg>     — send message without switching
+/session read <id>           — read session's inbox
+/session new <project> "<msg>" — spawn new session in project
+/session new "<msg>"           — spawn standalone session
+/session multi               — consolidated view of all sessions
+/session help                — show command reference
 ```
 
 ## Session ID Convention
